@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["client","HTTP client, requests and responses."],["error","Client-side error types."],["http","HTTP headers and status codes."],["prelude","A glob import for convenience."],["types","Indexable documents and type mapping."]]});

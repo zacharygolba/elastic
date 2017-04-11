@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `parse` mod in crate `elastic`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, parse">
+
+    <title>elastic::client::responses::parse - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc mod">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../../index.html'>elastic</a>::<wbr><a href='../../index.html'>client</a>::<wbr><a href='../index.html'>responses</a></p><script>window.sidebarCurrent = {name: 'parse', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../../index.html'>elastic</a>::<wbr><a href='../../index.html'>client</a>::<wbr><a href='../index.html'>responses</a>::<wbr><a class="mod" href=''>parse</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../../../src/elastic/client.rs.html#359-411' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Utility types for response parsing.</p>
+<h1 id="examples" class="section-header"><a href="#examples">Examples</a></h1>
+<p>Implement <code>FromResponse</code> for a deserialisable type that converts
+a http response into a concrete type.
+This example defines a search response that, for whatever reason,
+only includes the <code>took</code> field:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Deserialize</span>)]</span>
+<span class="kw">struct</span> <span class="ident">MyResponse</span> {
+    <span class="ident">took</span>: <span class="ident">u64</span>
+}
+ 
+<span class="kw">impl</span> <span class="ident">FromResponse</span> <span class="kw">for</span> <span class="ident">MyResponse</span> {
+    <span class="kw">fn</span> <span class="ident">from_response</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">res</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">ResponseError</span><span class="op">&gt;</span> 
+        <span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">HttpResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;&gt;</span>, <span class="ident">R</span>: <span class="ident">Read</span> 
+    {
+        <span class="comment">// HttpResponse.response() lets you inspect a response for success</span>
+        <span class="ident">res</span>.<span class="ident">into</span>().<span class="ident">response</span>(<span class="op">|</span><span class="ident">http_res</span><span class="op">|</span> {
+            <span class="kw">match</span> <span class="ident">http_res</span>.<span class="ident">status</span>() {
+                <span class="comment">// If the status is 2xx then return the response with `ok: true`</span>
+                <span class="comment">// The body will be parsed as a `MyResponse`.</span>
+                <span class="number">200</span>...<span class="number">299</span> <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">MaybeOkResponse</span>::<span class="ident">new</span>(<span class="bool-val">true</span>, <span class="ident">http_res</span>)),
+                <span class="comment">// Otherwise return the response with `ok: false`</span>
+                <span class="comment">// The body will be parsed as an `ApiError`.</span>
+                _ <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">MaybeOkResponse</span>::<span class="ident">new</span>(<span class="bool-val">false</span>, <span class="ident">http_res</span>))
+            }
+        })
+    }
+}</pre>
+<p>You can also parse the response body into a temporary <code>serde_json::Value</code>
+if the status code isn't enough to determine if it's ok.
+This will consume the <code>UnbufferedResponse</code> and return a <code>BufferedResponse</code>
+instead that keeps the response body private for later handlers to use.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.BufferedResponse.html"
+                                  title='struct elastic::client::responses::parse::BufferedResponse'>BufferedResponse</a></td>
+                           <td class='docblock-short'>
+                                <p>A previously buffered response body.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.MaybeOkResponse.html"
+                                  title='struct elastic::client::responses::parse::MaybeOkResponse'>MaybeOkResponse</a></td>
+                           <td class='docblock-short'>
+                                <p>A response that might be successful or an <code>ApiError</code>.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.UnbufferedResponse.html"
+                                  title='struct elastic::client::responses::parse::UnbufferedResponse'>UnbufferedResponse</a></td>
+                           <td class='docblock-short'>
+                                <p>An untouched response body.</p>
+
+                           </td>
+                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.MaybeBufferedResponse.html"
+                                  title='enum elastic::client::responses::parse::MaybeBufferedResponse'>MaybeBufferedResponse</a></td>
+                           <td class='docblock-short'>
+                                <p>A response body that may or may not have been buffered.</p>
+
+                           </td>
+                       </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="trait" href="trait.FromResponse.html"
+                                  title='trait elastic::client::responses::parse::FromResponse'>FromResponse</a></td>
+                           <td class='docblock-short'>
+                                <p>Convert a response message into a either a success
+or failure result.</p>
+
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "elastic";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>

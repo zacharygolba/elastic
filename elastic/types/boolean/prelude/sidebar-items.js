@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["BOOLEAN_DATATYPE","Elasticsearch datatype name."]],"struct":[["Boolean","An Elasticsearch `boolean` with a mapping."],["DefaultBooleanMapping","Default mapping for `bool`."]],"trait":[["BooleanMapping","The base requirements for mapping a `boolean` type."]]});

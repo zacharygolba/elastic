@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["requests","Request types for the Elasticsearch REST API."],["responses","Response types for the Elasticsearch REST API."]],"struct":[["Client","A HTTP client for the Elasticsearch REST API."],["RequestBuilder","A builder for a request."],["RequestParams","Misc parameters for any request."],["ResponseBuilder","A builder for a response."]]});

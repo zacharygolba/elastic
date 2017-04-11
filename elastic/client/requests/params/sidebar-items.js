@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Alias",""],["Feature",""],["Fields",""],["Id",""],["Index",""],["IndexMetric",""],["Lang",""],["Metric",""],["Name",""],["NewIndex",""],["NodeId",""],["Repository",""],["ScrollId",""],["Snapshot",""],["Target",""],["TaskId",""],["ThreadPoolPatterns",""],["Type",""]]});

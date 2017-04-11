@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Date` struct in crate `elastic_types`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Date">
+
+    <title>elastic_types::date::prelude::Date - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>elastic_types</a>::<wbr><a href='../index.html'>date</a>::<wbr><a href='index.html'>prelude</a></p><script>window.sidebarCurrent = {name: 'Date', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>elastic_types</a>::<wbr><a href='../index.html'>date</a>::<wbr><a href='index.html'>prelude</a>::<wbr><a class="struct" href=''>Date</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../../src/elastic_types/date/date.rs.html#65-71' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Date&lt;F, M&nbsp;=&nbsp;<a class="struct" href="../../../elastic_types/date/mapping/struct.DefaultDateMapping.html" title="struct elastic_types::date::mapping::DefaultDateMapping">DefaultDateMapping</a>&lt;F&gt;&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span> { /* fields omitted */ }</pre><div class='docblock'><p>An Elasticsearch <code>date</code> type with a required <code>time</code> component.</p>
+<p>The <a href="format/index.html">format</a> is provided as a generic parameter.
+This struct wraps up a <code>chrono::DateTime&lt;UTC&gt;</code> struct, meaning storing time in <code>UTC</code> is required.</p>
+<h1 id="examples" class="section-header"><a href="#examples">Examples</a></h1>
+<p>Defining a date using the default format:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">date</span>: <span class="ident">Date</span><span class="op">&lt;</span><span class="ident">DefaultDateFormat</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="ident">now</span>();</pre>
+<p>Defining a date using a named format:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">date</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="op">&lt;</span><span class="ident">BasicDateTime</span><span class="op">&gt;</span>::<span class="ident">now</span>();</pre>
+<p>Defining a date using a custom mapping:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">date</span>: <span class="ident">Date</span><span class="op">&lt;</span><span class="ident">BasicDateTime</span>, <span class="ident">DefaultDateMapping</span><span class="op">&lt;</span>_<span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="ident">now</span>();</pre>
+<p>Accessing the values of a date:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">date</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="op">&lt;</span><span class="ident">BasicDateTime</span><span class="op">&gt;</span>::<span class="ident">now</span>();
+
+<span class="comment">//eg: 2010/04/30 13:56:59.372</span>
+<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}/{}/{} {}:{}:{}.{}&quot;</span>,
+        <span class="ident">date</span>.<span class="ident">year</span>(),
+    <span class="ident">date</span>.<span class="ident">month</span>(),
+    <span class="ident">date</span>.<span class="ident">day</span>(),
+    <span class="ident">date</span>.<span class="ident">hour</span>(),
+    <span class="ident">date</span>.<span class="ident">minute</span>(),
+    <span class="ident">date</span>.<span class="ident">second</span>(),
+    <span class="ident">date</span>.<span class="ident">nanosecond</span>() <span class="op">/</span> <span class="number">1000000</span>
+);</pre>
+<h1 id="links" class="section-header"><a href="#links">Links</a></h1>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html">Elasticsearch Doc</a></li>
+</ul>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl&lt;F, M&gt; <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/date/date.rs.html#73-196' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>(date: <a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a>) -&gt; <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt;</code></span></h4>
+<div class='docblock'><p>Creates a new <code>Date</code> from the given <code>chrono::DateTime&lt;UTC&gt;</code>.</p>
+<p>This function will consume the provided <code>chrono</code> date.</p>
+<h1 id="examples-1" class="section-header"><a href="#examples-1">Examples</a></h1>
+<p>Create an <code>Date</code> from the given <code>chrono::DateTime</code>:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">chrono</span>::<span class="ident">UTC</span>;
+<span class="kw">use</span> <span class="ident">elastic_types</span>::<span class="ident">date</span>::{ <span class="ident">Date</span>, <span class="ident">DefaultDateFormat</span> };
+
+<span class="comment">//Create a chrono DateTime struct</span>
+<span class="kw">let</span> <span class="ident">chronoDate</span> <span class="op">=</span> <span class="ident">UTC</span>::<span class="ident">now</span>();
+
+<span class="comment">//Give it to the Date struct</span>
+<span class="kw">let</span> <span class="ident">esDate</span>: <span class="ident">Date</span><span class="op">&lt;</span><span class="ident">DefaultDateFormat</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="ident">new</span>(<span class="ident">chronoDate</span>);</pre>
+</div><h4 id='method.build' class="method"><span id='build.v' class='invisible'><code>fn <a href='#method.build' class='fnname'>build</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;year: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;month: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;day: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;hour: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;minute: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;second: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;milli: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a><br>) -&gt; <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt;</code></span></h4>
+<div class='docblock'><p>Creates an <code>Date</code> from the given UTC primitives:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">esDate</span>: <span class="ident">Date</span><span class="op">&lt;</span><span class="ident">DefaultDateFormat</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="ident">build</span>(
+    <span class="number">2015</span>,
+    <span class="number">5</span>,
+    <span class="number">14</span>,
+    <span class="number">16</span>,
+    <span class="number">45</span>,
+    <span class="number">8</span>,
+    <span class="number">886</span>
+);</pre>
+</div><h4 id='method.now' class="method"><span id='now.v' class='invisible'><code>fn <a href='#method.now' class='fnname'>now</a>() -&gt; <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt;</code></span></h4>
+<div class='docblock'><p>Gets the current system time.</p>
+<h1 id="examples-2" class="section-header"><a href="#examples-2">Examples</a></h1>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">date</span>: <span class="ident">Date</span><span class="op">&lt;</span><span class="ident">DefaultDateFormat</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="ident">now</span>();</pre>
+</div><h4 id='method.parse' class="method"><span id='parse.v' class='invisible'><code>fn <a href='#method.parse' class='fnname'>parse</a>(date: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt;, <a class="struct" href="../../../elastic_types/date/struct.ParseError.html" title="struct elastic_types::date::ParseError">ParseError</a>&gt;</code></span></h4>
+<div class='docblock'><p>Parse the date and time from a string.</p>
+<p>The format of the string must match the given <code>DateFormat</code>.</p>
+<h1 id="examples-3" class="section-header"><a href="#examples-3">Examples</a></h1>
+<p>Parsing from a specified <code>DateFormat</code>.</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">date</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="op">&lt;</span><span class="ident">BasicDateTime</span><span class="op">&gt;</span>::<span class="ident">parse</span>(<span class="string">&quot;20151126T145543.778Z&quot;</span>).<span class="ident">unwrap</span>();</pre>
+</div><h4 id='method.format' class="method"><span id='format.v' class='invisible'><code>fn <a href='#method.format' class='fnname'>format</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a></code></span></h4>
+<div class='docblock'><p>Format the date and time as a string.</p>
+<p>The format of the string is specified by the given <code>DateFormat</code>.</p>
+<h1 id="examples-4" class="section-header"><a href="#examples-4">Examples</a></h1>
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">date</span>: <span class="ident">Date</span><span class="op">&lt;</span><span class="ident">BasicDateTime</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="ident">now</span>();
+<span class="kw">let</span> <span class="ident">fmt</span> <span class="op">=</span> <span class="ident">date</span>.<span class="ident">format</span>();
+
+<span class="comment">//eg: 20151126T145543.778Z</span>
+<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">fmt</span>);</pre>
+</div><h4 id='method.remap' class="method"><span id='remap.v' class='invisible'><code>fn <a href='#method.remap' class='fnname'>remap</a>&lt;FInto, MInto&gt;(self) -&gt; <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;FInto, MInto&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;FInto: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;MInto: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = FInto&gt;,&nbsp;</span></code></span></h4>
+<div class='docblock'><p>Change the format/mapping of this date.</p>
+<h1 id="examples-5" class="section-header"><a href="#examples-5">Examples</a></h1>
+<pre class="rust rust-example-rendered">
+<span class="comment">//Get the current datetime formatted as basic_date_time</span>
+<span class="kw">let</span> <span class="ident">date</span>: <span class="ident">Date</span><span class="op">&lt;</span><span class="ident">BasicDateTime</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Date</span>::<span class="ident">now</span>();
+
+<span class="comment">//Change the format to epoch_millis</span>
+<span class="kw">let</span> <span class="ident">otherdate</span>: <span class="ident">Date</span><span class="op">&lt;</span><span class="ident">EpochMillis</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">date</span>.<span class="ident">remap</span>();</pre>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a>, M:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a>&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/date/date.rs.html#64' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>, M:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/date/date.rs.html#64' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt;</code></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a>, M:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a>&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a> for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/date/date.rs.html#64' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class="method"><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class="method"><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;M, F&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a>&gt; for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/macros.rs.html#56-62' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from' class="method"><span id='from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(value: <a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a>) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;M, F&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a>&gt; for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/macros.rs.html#64-70' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.as_ref' class="method"><span id='as_ref.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref' class='fnname'>as_ref</a>(&amp;self) -&gt; &amp;<a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a></code></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;M, F&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a>&lt;<a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a>&gt; for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/macros.rs.html#72-82' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq-1' class="method"><span id='eq.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, other: &amp;<a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne-1' class="method"><span id='ne.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;<a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;M, F&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/trait.Deref.html" title="trait core::ops::Deref">Deref</a> for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/macros.rs.html#96-103' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Target' class="type"><span id='Target.t' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Deref.html#associatedtype.Target' class="type">Target</a> = <a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a></code></span></h4>
+<div class='docblock'><p>The resulting type after dereferencing</p>
+</div><h4 id='method.deref' class="method"><span id='deref.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Deref.html#tymethod.deref' class='fnname'>deref</a>(&amp;self) -&gt; &amp;<a class="type" href="../../../elastic_types/date/type.ChronoDateTime.html" title="type elastic_types::date::ChronoDateTime">ChronoDateTime</a></code></span></h4>
+<div class='docblock'><p>The method called to dereference a value</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;F, M&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/date/date.rs.html#206-213' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt;</code></span></h4>
+<div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;F, M&gt; <a class="trait" href="../../../serde/ser/trait.Serialize.html" title="trait serde::ser::Serialize">Serialize</a> for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/date/date.rs.html#215-224' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.serialize' class="method"><span id='serialize.v' class='invisible'><code>fn <a href='../../../serde/ser/trait.Serialize.html#tymethod.serialize' class='fnname'>serialize</a>&lt;S&gt;(&amp;self, serializer: S) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;S::<a class="trait" href="../../../serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Ok</a>, S::<a class="trait" href="../../../serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;S: <a class="trait" href="../../../serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Serializer</a>,&nbsp;</span></code></span></h4>
+<div class='docblock'><p>Serialize this value into the given Serde serializer. <a href="../../../serde/ser/trait.Serialize.html#tymethod.serialize">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;F, M&gt; <a class="trait" href="../../../serde/de/trait.Deserialize.html" title="trait serde::de::Deserialize">Deserialize</a> for <a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="../../../elastic_types/date/prelude/trait.DateFormat.html" title="trait elastic_types::date::prelude::DateFormat">DateFormat</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;M: <a class="trait" href="../../../elastic_types/date/mapping/trait.DateMapping.html" title="trait elastic_types::date::mapping::DateMapping">DateMapping</a>&lt;Format = F&gt;,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/elastic_types/date/date.rs.html#226-276' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.deserialize' class="method"><span id='deserialize.v' class='invisible'><code>fn <a href='../../../serde/de/trait.Deserialize.html#tymethod.deserialize' class='fnname'>deserialize</a>&lt;D&gt;(deserializer: D) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../../../elastic_types/date/struct.Date.html" title="struct elastic_types::date::Date">Date</a>&lt;F, M&gt;, D::<a class="trait" href="../../../serde/de/trait.Deserializer.html" title="trait serde::de::Deserializer">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;D: <a class="trait" href="../../../serde/de/trait.Deserializer.html" title="trait serde::de::Deserializer">Deserializer</a>,&nbsp;</span></code></span></h4>
+<div class='docblock'><p>Deserialize this value from the given Serde deserializer. <a href="../../../serde/de/trait.Deserialize.html#tymethod.deserialize">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "elastic_types";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

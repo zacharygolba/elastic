@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["DATE_DATATYPE","Elasticsearch datatype name."]],"struct":[["DefaultDateMapping","Default mapping for `date`."]],"trait":[["DateMapping","The base requirements for mapping a `date` type."]]});

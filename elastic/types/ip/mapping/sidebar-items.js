@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["IP_DATATYPE","Elasticsearch datatype name."]],"struct":[["DefaultIpMapping","Default mapping for `geo_shape`."]],"trait":[["IpMapping","The base requirements for mapping a `ip` type."]]});

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ElasticTokenCountFieldMapping` struct in crate `elastic`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ElasticTokenCountFieldMapping">
+
+    <title>elastic::types::string::mapping::ElasticTokenCountFieldMapping - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../../index.html'>elastic</a>::<wbr><a href='../../index.html'>types</a>::<wbr><a href='../index.html'>string</a>::<wbr><a href='index.html'>mapping</a></p><script>window.sidebarCurrent = {name: 'ElasticTokenCountFieldMapping', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../../index.html'>elastic</a>::<wbr><a href='../../index.html'>types</a>::<wbr><a href='../index.html'>string</a>::<wbr><a href='index.html'>mapping</a>::<wbr><a class="struct" href=''>ElasticTokenCountFieldMapping</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../../../src/elastic_types/string/mapping.rs.html#92-116' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct ElasticTokenCountFieldMapping {
+    pub analyzer: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;,
+    pub boost: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>&gt;,
+    pub doc_values: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;,
+    pub index: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="../../../../elastic/types/prelude/enum.IndexAnalysis.html" title="enum elastic::types::prelude::IndexAnalysis">IndexAnalysis</a>&gt;,
+    pub include_in_all: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;,
+    pub precision_step: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;,
+    pub store: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;,
+}</pre><div class='docblock'><p>A multi-field string mapping for a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/token-count.html">token count</a>.</p>
+</div><h2 class='fields'>Fields</h2><span id='structfield.analyzer' class="structfield">
+                           <span id='analyzer.v' class='invisible'>
+                           <code>analyzer: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;</code>
+                           </span></span><div class='docblock'><p>The analyzer which should be used for analyzed string fields,
+both at index-time and at search-time (unless overridden by the <code>search_analyzer</code>).
+Defaults to the default index analyzer, or the <code>standard</code> analyzer.</p>
+</div><span id='structfield.boost' class="structfield">
+                           <span id='boost.v' class='invisible'>
+                           <code>boost: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>&gt;</code>
+                           </span></span><div class='docblock'><p>Field-level index time boosting. Accepts a floating point number, defaults to <code>1.0</code>.</p>
+</div><span id='structfield.doc_values' class="structfield">
+                           <span id='doc_values.v' class='invisible'>
+                           <code>doc_values: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;</code>
+                           </span></span><div class='docblock'><p>Should the field be stored on disk in a column-stride fashion,
+so that it can later be used for sorting, aggregations, or scripting?
+Accepts <code>true</code> (default) or <code>false</code>.</p>
+</div><span id='structfield.index' class="structfield">
+                           <span id='index.v' class='invisible'>
+                           <code>index: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="../../../../elastic/types/prelude/enum.IndexAnalysis.html" title="enum elastic::types::prelude::IndexAnalysis">IndexAnalysis</a>&gt;</code>
+                           </span></span><div class='docblock'><p>Should the field be searchable? Accepts <code>not_analyzed</code> (default) and <code>no</code>.</p>
+</div><span id='structfield.include_in_all' class="structfield">
+                           <span id='include_in_all.v' class='invisible'>
+                           <code>include_in_all: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;</code>
+                           </span></span><div class='docblock'><p>Whether or not the field value should be included in the <code>_all</code> field?
+Accepts true or false.
+Defaults to <code>false</code> if index is set to <code>no</code>, or if a parent object field sets <code>include_in_all</code> to false.
+Otherwise defaults to <code>true</code>.</p>
+</div><span id='structfield.precision_step' class="structfield">
+                           <span id='precision_step.v' class='invisible'>
+                           <code>precision_step: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;</code>
+                           </span></span><div class='docblock'><p>Controls the number of extra terms that are indexed to make range queries faster.
+Defaults to <code>32</code>.</p>
+</div><span id='structfield.store' class="structfield">
+                           <span id='store.v' class='invisible'>
+                           <code>store: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;</code>
+                           </span></span><div class='docblock'><p>Whether the field value should be stored and retrievable separately from the <code>_source</code> field.
+Accepts <code>true</code> or <code>false</code> (default).</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../../../elastic/types/prelude/struct.ElasticTokenCountFieldMapping.html" title="struct elastic::types::prelude::ElasticTokenCountFieldMapping">ElasticTokenCountFieldMapping</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../../src/elastic_types/string/mapping.rs.html#91' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../../../elastic/types/prelude/struct.ElasticTokenCountFieldMapping.html" title="struct elastic::types::prelude::ElasticTokenCountFieldMapping">ElasticTokenCountFieldMapping</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../../src/elastic_types/string/mapping.rs.html#91' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html" title="struct core::fmt::Error">Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../../../../elastic/types/prelude/struct.ElasticTokenCountFieldMapping.html" title="struct elastic::types::prelude::ElasticTokenCountFieldMapping">ElasticTokenCountFieldMapping</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../../src/elastic_types/string/mapping.rs.html#91' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; <a class="struct" href="../../../../elastic/types/prelude/struct.ElasticTokenCountFieldMapping.html" title="struct elastic::types::prelude::ElasticTokenCountFieldMapping">ElasticTokenCountFieldMapping</a></code></span></h4>
+</div><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="../../../../serde/ser/trait.Serialize.html" title="trait serde::ser::Serialize">Serialize</a> for <a class="struct" href="../../../../elastic/types/prelude/struct.ElasticTokenCountFieldMapping.html" title="struct elastic::types::prelude::ElasticTokenCountFieldMapping">ElasticTokenCountFieldMapping</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../../src/elastic_types/string/mapping.rs.html#118-136' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.serialize' class="method"><span id='serialize.v' class='invisible'><code>fn <a href='../../../../serde/ser/trait.Serialize.html#tymethod.serialize' class='fnname'>serialize</a>&lt;S&gt;(&amp;self, serializer: S) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;S::<a class="trait" href="../../../../serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Ok</a>, S::<a class="trait" href="../../../../serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;S: <a class="trait" href="../../../../serde/ser/trait.Serializer.html" title="trait serde::ser::Serializer">Serializer</a>,&nbsp;</span></code></span></h4>
+</div><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../../../elastic/types/prelude/struct.ElasticTokenCountFieldMapping.html" title="struct elastic::types::prelude::ElasticTokenCountFieldMapping">ElasticTokenCountFieldMapping</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../../src/elastic_types/string/mapping.rs.html#91' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../../../elastic/types/prelude/struct.ElasticTokenCountFieldMapping.html" title="struct elastic::types::prelude::ElasticTokenCountFieldMapping">ElasticTokenCountFieldMapping</a></code></span></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "elastic";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>
